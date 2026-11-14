@@ -6,22 +6,22 @@ Name:
 
 | Check | Result |
 |---|---|
-| Lighthouse accessibility score | |
-| Lighthouse failed audits | |
-| WAVE errors | |
-| WAVE contrast errors | |
-| WAVE alerts | |
-| HTML validator errors | |
-| Keyboard test (notes) | |
-| 200% zoom and 320px test (notes) | |
+| Lighthouse accessibility score | 84 |
+| Lighthouse failed audits | 4 |
+| WAVE errors | 1 |
+| WAVE contrast errors | 6 |
+| WAVE alerts | 9 |
+| HTML validator errors | 5 |
+| Keyboard test (notes) | Keyboard controls do not work at all. |
+| 200% zoom and 320px test (notes) | Text cut off after zoom and window size changed. |
 
 Contrast pairs checked:
 
 | Text color | Background color | Ratio | Pass or fail (4.5:1 normal, 3:1 large) |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| 8AB4FF | FFFFFF | 2.08:1 | Fail |
+| FFFFFF | F5A25D | 2.08:1 | Fail |
+| AAAAAA | F4F4F4 | 2.11:1 | Fail |
 
 ## Problems found on home.html (at least 8)
 
