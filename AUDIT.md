@@ -1,6 +1,6 @@
 # AUDIT
 
-Name:
+Name: Skye Hazel
 
 ## Baseline (home.html before any changes)
 
@@ -27,7 +27,7 @@ Contrast pairs checked:
 
 | # | What I saw (evidence) | Tool or test that showed it | POUR principle | WCAG idea | Severity | Planned fix |
 |---|---|---|---|---|---|---|
-| 1 | | | | | | |
+| 1 | Image not rendering, no descriptive text | | | | | |
 | 2 | | | | | | |
 | 3 | | | | | | |
 | 4 | | | | | | |
@@ -35,6 +35,25 @@ Contrast pairs checked:
 | 6 | | | | | | |
 | 7 | | | | | | |
 | 8 | | | | | | |
+| 9 | | | | | | |
+| 10 | | | | | | |
+| 11 | | | | | | |
+| 12 | | | | | | |
+| 13 | | | | | | |
+| 14 | | | | | | |
+
+| # | What I saw (evidence) | Tool or test that showed it | POUR principle | WCAG idea | Severity | Planned fix |
+|---|---|---|---|---|---|---|
+| 1 | Image not rendering, no descriptive text | Manual | Perceivable | 1.1.1 Non-text Content: All non-text content that is presented to the user has a text alternative that serves the equivalent purpose. | Low | Fix image rendering. Add descriptive text alternatives. |
+| 2 | Poor text color contrast | Lighthouse | Perceivable | 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. | High | Improve to a contrast ratio of at least 4.5:1. |
+| 3 | No ability to navigate using keyboard | WAVE | Operable | 2.1.1 Keyboard: All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes. | High | Improve keyboard accessibility. |
+| 4 | Poor information hierarchy. All descriptive sections have equal heading size and it is unclear which information is most important | Lighthouse and WAVE | Perceivable | 1.3.1 Info and Relationships: Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. | Medium | Introduce appropriate heading sizes and content hierarchy. |
+| 5 | Hours of operation are unclear. Some days contain no text. | Manual | Perceivable | 1.4.1 Use of Color: Color is not used as the only visual means of conveying information. | High | Ensure that color is not the only means of conveying information. |
+| 6 | No form submission message | Manual | Understandable | 3.2.5 Change on Request: Changes of context are initiated only by user request or a mechanism is available to turn off such changes. | Medium | Add a form submission success message and a status change on the page. |
+| 7 | No clear guidance for how to resolve errors | Manual | Understandable | 3.3.1 Error Identification: If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text. | High | Include a help button and provide proactive error guidance. |
+| 8 | There is no mechanism to remove services after selecting them other than resetting and restarting the form | Manual | Understandable | 3.3.4 Error Prevention (Legal, Financial, Data): For web pages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses... | Low | Allow users to undo any changes made to the services page without having to reset all selections. |
+
+
 
 ## ARIA notes (Part 2, step 13)
 
