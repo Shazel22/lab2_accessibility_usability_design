@@ -1,13 +1,13 @@
 # AI LOG
 
-Name:
+Name: Skye Hazel
 
 ## My AI setup
 
-- Tool and where it runs (editor, terminal):
-- Version or model, if shown:
-- Project context file name and location:
-- Did the tool correctly list and describe my project files on the first try? What did I fix?
+- Tool and where it runs (editor, terminal): Claude Code
+- Version or model, if shown: Opus 5.5
+- Project context file name and location: CLAUDE.md under docs folder
+- Did the tool correctly list and describe my project files on the first try? What did I fix? Yes.  It called out an problem where I would need to move the context file to the project root. 
 
 ## Prompt log (at least 6)
 
