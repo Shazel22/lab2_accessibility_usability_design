@@ -39,7 +39,7 @@ Contrast pairs checked:
 
 ## ARIA notes (Part 2, step 13)
 
-For each ARIA attribute you kept or added, explain why a native HTML element could not do the job. If you use none, say so.
+No ARIA attributes were used. 
 
 ## Usability review of services.html
 
@@ -53,12 +53,12 @@ Findings (at least 6, at least 5 different heuristics):
 
 | # | Task | Evidence (what happened) | Heuristic | Severity | Change to test |
 |---|---|---|---|---|---|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
-| 6 | | | | | |
+| 1 | Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I did not get any indication that the button selection worked.  If my screen zoom was larger, I would not see any change to the Estimated Price section.| 1. Visibility of system status | Medium| The buttons should have a hover and focused state.  |
+| 2 | Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I can see the estimated cost changing but the individual line items for boarding and grooming are staying the same when I select different dog sizes. | 2. Match between system and real world | High | The dollar amounts should change dynamically based on both the services selected and the information entered. |
+| 3 | Task A: Estimate the cost for a large dog for boarding and grooming. | The size chart hyperlink does not work so I have no point of reference to choose the correct size. | 10. Help and documentation | Medium| Create a working size chart.|
+| 4 | Task B: Find out if Dec 24 to Dec 26, 2026 is possible. | After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any confirmation as to whether the request was accepted.  I only saw a loading symbol.  | 1. Visibility of system status | High | Show a confirmation message or error message if the request is unsuccessful. |
+| 5 | Task B: Find out if Dec 24 to Dec 26, 2026 is possible, | It was unclear to me at first what "Date 1" and "Date 2" meant.  After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any indication as to what I requested.| 4. Consistency and standards | Low | Change the language to match that of hotel booking sites. |
+| 6 | Task C: Remove only Training and keep every other choice | There was no way to remove a single service. The only option was to reset and start over, which cleared my other choices too. | 3. User control and freedom | Low | Add a "Remove" button next to each selected service that removes only that service. |
 
 Design checklist for this page:
 
