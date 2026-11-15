@@ -1,104 +1,147 @@
 /* MPLS Dog Boarding: styles for home.html */
 
+/* Font sizes use rem so they follow the visitor's browser text size setting
+   (px sizes ignore it). Old sizes were 10px to 12px, too small to read comfortably. */
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  font-size: 12px;
-  color: #8a8a8a;
+  font-size: 1rem; /* was 12px */
+  line-height: 1.5;
+  color: #333333; /* was #8a8a8a (3.45:1); now 12.63:1 on white */
 }
 
 a {
-  color: #8ab4ff;
+  color: #1c4fa0; /* was #8ab4ff (2.09:1); now 7.85:1 on white, 7.14:1 on footer */
 }
 
-a:focus,
-.btn:focus,
-*:focus {
-  outline: none;
+/* Visible focus for keyboard users (replaces the old "outline: none" that hid focus).
+   #5b2d8e is 9.50:1 on white, 8.35:1 on the lavender background, so it passes 3:1 everywhere. */
+:focus-visible {
+  outline: 3px solid #5b2d8e;
+  outline-offset: 3px;
 }
 
-/* Page grid: header row, main row, footer row */
+/* Skip link: off screen until it receives keyboard focus, then appears top left */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  background: #5b2d8e;
+  color: #ffffff; /* 9.50:1 */
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  left: 10px;
+  top: 10px;
+}
+
+/* Page grid: header row, main row, footer row.
+   Removed: min-width 1000px (forced sideways scrolling), height 100vh + overflow hidden
+   (cut off anything taller than the window), fixed 150px / 15% rows, and width 100vw
+   (includes the scrollbar, so it is wider than the page). Rows now size to their content. */
 #container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 150px 1fr 15%;
-  width: 100vw;
-  min-width: 1000px;
-  height: 100vh;
-  overflow: hidden;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
 .top {
   grid-column: 1 / 4;
   grid-row: 1;
   display: flex;
+  flex-wrap: wrap; /* logo and nav stack on narrow screens */
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  gap: 10px 20px;
+  padding: 10px 16px;
   background: #ffffff;
 }
 
 .top img {
+  display: block;
   width: 150px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Nav is now a real list: remove bullets and keep links in a row */
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu a {
-  margin-left: 20px;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 1rem; /* was 12px */
 }
 
-/* Main area with flexbox cards over a photo */
+/* Main area with flexbox cards over a decorative illustration.
+   background-color is a fallback so text stays readable if the image fails to load. */
 #flexcontainer {
   grid-column: 1 / 4;
   grid-row: 2;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  background: url('img/dog_bg.jpeg') center / cover no-repeat;
+  background: #f4eefa url('img/dog_bg.svg') center / cover no-repeat;
 }
 
+/* Removed fixed height (350px) and overflow hidden, which cut off text when zoomed.
+   flex-shrink is now 1 so cards can get narrower than 300px on a 320px screen. */
 .card {
-  flex: 1 0 325px;
-  height: 350px;
-  overflow: hidden;
+  flex: 1 1 300px;
+  min-width: 0;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 16px;
   margin: 2%;
-  background-color: rgba(255, 255, 255, 0.55);
+  /* was rgba(255,255,255,0.55): the image showed through and changed contrast behind text.
+     Solid white keeps every text ratio fixed no matter what is behind the card. */
+  background-color: #ffffff;
   border-radius: 10px;
 }
 
+/* Removed fixed height (170px) */
 .hero {
   flex: 1 1 90%;
-  height: 170px;
 }
 
-.card h2,
+.card h2 {
+  color: #5b2d8e; /* was #b388d6 (2.83:1); now 9.50:1 */
+  font-size: 1.25rem; /* was 14px */
+}
+
+/* Price sub-headings were h5, now h3 (correct order under h2) */
 .card h3 {
-  color: #b388d6;
-  font-size: 14px;
-}
-
-.card h5 {
-  color: #b8b8b8;
-  font-size: 11px;
+  color: #4a4a4a; /* was #b8b8b8 (1.98:1); now 8.86:1 */
+  font-size: 1rem; /* was 11px */
 }
 
 .title {
-  font-size: 22px;
-  color: #c9a3e8;
+  margin: 0;
+  font-size: 2rem; /* was 22px */
+  line-height: 1.2;
+  color: #5b2d8e; /* was #c9a3e8 (2.12:1); now 9.50:1 */
 }
 
 .tagline {
-  font-size: 10px;
+  font-size: 1rem; /* was 10px */
 }
 
 .btn {
   display: inline-block;
   padding: 10px 18px;
-  background: #f5a25d;
+  /* was #f5a25d with white text (2.06:1). Now white on #a84300 = 6.06:1,
+     and the button itself is 6.06:1 against the white card (needs 3:1). */
+  background: #a84300;
   color: #ffffff;
+  text-decoration: none; /* now a real link; keep the button look */
   border-radius: 6px;
   cursor: pointer;
 }
@@ -106,30 +149,32 @@ a:focus,
 .paws {
   display: block;
   width: 120px;
+  max-width: 100%;
   margin-top: 10px;
 }
 
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 6px;
-  border-radius: 50%;
+/* Hours table: left aligned with room between columns */
+.hours-list {
+  border-collapse: collapse;
 }
 
-.green {
-  background: #2e9e4f;
-}
-
-.red {
-  background: #d64545;
+.hours-list th,
+.hours-list td {
+  text-align: left;
+  padding: 4px 16px 4px 0;
 }
 
 .foot {
   grid-column: 1 / 4;
   grid-row: 3;
-  padding-top: 40px;
-  font-size: 11px;
-  color: #aaaaaa;
+  padding: 16px;
+  text-align: center; /* replaces the old <center> tag */
+  font-size: 0.875rem; /* was 11px */
+  color: #4a4a4a; /* was #aaaaaa (2.11:1); now 8.06:1 on #f4f4f4 */
   background: #f4f4f4;
+}
+
+/* <address> is italic by default; keep footer text consistent */
+.foot address {
+  font-style: normal;
 }

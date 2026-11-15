@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110" width="300" height="110">
+  <!-- MPLS Dog Boarding logo: purple badge with a dog face, plus the business name -->
+  <circle cx="55" cy="55" r="50" fill="#5b2d8e"/>
+  <!-- floppy ears -->
+  <ellipse cx="30" cy="50" rx="11" ry="22" fill="#e8d9f5" transform="rotate(18 30 50)"/>
+  <ellipse cx="80" cy="50" rx="11" ry="22" fill="#e8d9f5" transform="rotate(-18 80 50)"/>
+  <!-- head -->
+  <ellipse cx="55" cy="56" rx="24" ry="27" fill="#ffffff"/>
+  <!-- eyes -->
+  <circle cx="46" cy="50" r="3.5" fill="#2a1540"/>
+  <circle cx="64" cy="50" r="3.5" fill="#2a1540"/>
+  <!-- snout and nose -->
+  <ellipse cx="55" cy="68" rx="11" ry="8" fill="#f1e8f9"/>
+  <ellipse cx="55" cy="64" rx="5" ry="3.5" fill="#2a1540"/>
+  <path d="M55 67.5 v4 M50 73 q5 4 10 0" stroke="#2a1540" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- business name -->
+  <text x="118" y="52" font-family="Montserrat, Arial, sans-serif" font-size="34" font-weight="700" fill="#5b2d8e">MPLS</text>
+  <text x="118" y="84" font-family="Montserrat, Arial, sans-serif" font-size="22" font-weight="600" fill="#2a1540">Dog Boarding</text>
+</svg>
