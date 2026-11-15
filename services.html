@@ -3,75 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Build an estimate for MPLS Dog Boarding services.">
-<title>Services | MPLS Dog Boarding</title>
+<meta name="description" content="Estimate the cost of boarding and extra services at MPLS Dog Boarding, and check if your dates are available.">
+<title>Services and Estimate | MPLS Dog Boarding</title>
 <link rel="stylesheet" href="services.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <header class="site-header">
   <a href="home.html" class="brand">MPLS Dog Boarding</a>
-  <nav aria-label="Main">
-    <a href="home.html">Home</a>
-    <a href="services.html">Services</a>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="home.html#hours">Hours</a></li>
+    </ul>
   </nav>
 </header>
 
 <main id="main">
 
-  <div class="promo promo1">WELCOME!!! SPECIAL OFFER TODAY!!!</div>
-  <div class="promo promo2">NEW: WEBCAM ACCESS ONLY $10 <a href="#">CLICK HERE</a></div>
-  <div class="promo promo3">HOLIDAY SPOTS GOING FAST!!! BOOK NOW!!!</div>
+  <h1>Services and Estimate</h1>
+  <p class="intro">Tell us about your dog and your dates, pick any extra services, and see your estimated price. Then check if your dates are available.</p>
 
-  <h1>Services</h1>
+  <div class="layout">
 
-  <section>
-    <h2>Pick a Service</h2>
-    <div class="grid8">
-      <button class="btn svc" data-key="boarding">Boarding</button>
-      <button class="btn svc" data-key="daycare">Daycare</button>
-      <button class="btn svc" data-key="grooming">Grooming</button>
-      <button class="btn svc" data-key="training">Training</button>
-      <button class="btn svc" data-key="webcam">Webcam Access</button>
-      <button class="btn svc" data-key="taxi">Pet Taxi</button>
-      <button class="btn svc" data-key="gift">Gift Cards</button>
-      <button class="btn svc" data-key="member">Memberships</button>
-    </div>
-  </section>
+    <!-- Left column: the choices.
+         Not a <form>: inside a form, pressing Enter on a checkbox submitted the whole page. -->
+    <div class="choices">
 
-  <section>
-    <h2>Info</h2>
-    <div class="row">
-      <label for="size">Size</label>
-      <select id="size">
-        <option value="S1">S1</option>
-        <option value="M2">M2</option>
-        <option value="L3">L3</option>
-        <option value="XL4">XL4</option>
-      </select>
-      <a href="#">See chart</a>
-    </div>
-    <div class="row">
-      <label for="d1">Date 1</label>
-      <input type="date" id="d1">
-    </div>
-    <div class="row">
-      <label for="d2">Date 2</label>
-      <input type="date" id="d2">
-    </div>
-    <div class="actions">
-      <button class="btn" id="reset">Reset</button>
-      <button class="btn" id="go">Go</button>
-      <button class="btn" id="send">Send</button>
-    </div>
-    <div id="spinner" class="spinner" hidden></div>
-  </section>
+      <!-- Step 1: dog size -->
+      <section class="panel">
+        <h2><span class="step">1</span> Your dog</h2>
+        <label for="size">Dog size</label>
+        <select id="size" name="size">
+          <option value="">Choose a size</option>
+          <option value="small">Small (up to 25 lb)</option>
+          <option value="medium">Medium (26 to 50 lb)</option>
+          <option value="large">Large (51 to 90 lb)</option>
+          <option value="xlarge">Extra large (91 lb and up)</option>
+        </select>
 
-  <section>
-    <h2>Kennel nights</h2>
-    <ul id="list"></ul>
-    <p>Est.: <span id="total">$0</span></p>
-  </section>
+        <details class="help">
+          <summary>Not sure which size? See the size chart</summary>
+          <table class="size-chart">
+            <caption>Dog sizes and how size changes the price</caption>
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Boarding and grooming price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Small</th><td>Up to 25 lb</td><td>Standard price</td></tr>
+              <tr><th scope="row">Medium</th><td>26 to 50 lb</td><td>5% more</td></tr>
+              <tr><th scope="row">Large</th><td>51 to 90 lb</td><td>10% more</td></tr>
+              <tr><th scope="row">Extra large</th><td>91 lb and up</td><td>20% more</td></tr>
+            </tbody>
+          </table>
+          <p>Other services cost the same for every size.</p>
+        </details>
+      </section>
+
+      <!-- Step 2: dates -->
+      <section class="panel">
+        <h2><span class="step">2</span> Your dates</h2>
+        <p class="hint">Drop off and pick up: Monday to Friday 7:00 am to 6:00 pm, Saturday 8:00 am to 4:00 pm. We are closed on Sunday.</p>
+
+        <div class="field">
+          <label for="dropoff">Drop off date</label>
+          <input type="date" id="dropoff" name="dropoff" aria-describedby="dropoff-error">
+          <p class="error" id="dropoff-error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="pickup">Pick up date</label>
+          <input type="date" id="pickup" name="pickup" aria-describedby="pickup-error">
+          <p class="error" id="pickup-error" hidden></p>
+        </div>
+      </section>
+
+      <!-- Step 3: services -->
+      <section class="panel">
+        <h2><span class="step">3</span> Services</h2>
+        <p class="hint">Use Space or Enter to check a box. Use the minus and plus buttons, or type a number, to set how many.</p>
+
+        <fieldset>
+          <legend>Stay options</legend>
+          <ul class="service-list">
+            <li>
+              <input type="checkbox" id="svc-boarding" value="boarding">
+              <label for="svc-boarding">Boarding <span class="price">$75 per night, or $425 for each 7 nights. Your dates set the number of nights.</span></label>
+            </li>
+            <li>
+              <input type="checkbox" id="svc-webcam" value="webcam">
+              <label for="svc-webcam">Webcam access <span class="price">$10 for the whole stay</span></label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extra services (choose how many)</legend>
+          <ul class="service-list">
+            <li class="qty-row" data-key="grooming">
+              <div class="qty-text">
+                <label for="qty-grooming">Grooming</label>
+                <span class="price">$60 each, one bath and trim</span>
+                <span class="limit" id="limit-grooming"></span>
+              </div>
+              <div class="stepper">
+                <button type="button" class="step-btn minus">&minus;<span class="visually-hidden"> one grooming</span></button>
+                <input type="number" id="qty-grooming" min="0" value="0" inputmode="numeric" aria-describedby="limit-grooming">
+                <button type="button" class="step-btn plus">+<span class="visually-hidden"> one grooming</span></button>
+              </div>
+            </li>
+            <li class="qty-row" data-key="daycare">
+              <div class="qty-text">
+                <label for="qty-daycare">Daycare days</label>
+                <span class="price">$45 per day of group play</span>
+                <span class="limit" id="limit-daycare"></span>
+              </div>
+              <div class="stepper">
+                <button type="button" class="step-btn minus">&minus;<span class="visually-hidden"> one daycare day</span></button>
+                <input type="number" id="qty-daycare" min="0" value="0" inputmode="numeric" aria-describedby="limit-daycare">
+                <button type="button" class="step-btn plus">+<span class="visually-hidden"> one daycare day</span></button>
+              </div>
+            </li>
+            <li class="qty-row" data-key="training">
+              <div class="qty-text">
+                <label for="qty-training">Training sessions</label>
+                <span class="price">$50 per session</span>
+                <span class="limit" id="limit-training"></span>
+              </div>
+              <div class="stepper">
+                <button type="button" class="step-btn minus">&minus;<span class="visually-hidden"> one training session</span></button>
+                <input type="number" id="qty-training" min="0" value="0" inputmode="numeric" aria-describedby="limit-training">
+                <button type="button" class="step-btn plus">+<span class="visually-hidden"> one training session</span></button>
+              </div>
+            </li>
+            <li class="qty-row" data-key="taxi">
+              <div class="qty-text">
+                <label for="qty-taxi">Pet taxi trips</label>
+                <span class="price">$25 per trip between your home and us</span>
+                <span class="limit" id="limit-taxi"></span>
+              </div>
+              <div class="stepper">
+                <button type="button" class="step-btn minus">&minus;<span class="visually-hidden"> one pet taxi trip</span></button>
+                <input type="number" id="qty-taxi" min="0" value="0" inputmode="numeric" aria-describedby="limit-taxi">
+                <button type="button" class="step-btn plus">+<span class="visually-hidden"> one pet taxi trip</span></button>
+              </div>
+            </li>
+          </ul>
+        </fieldset>
+      </section>
+
+    </div>
+
+    <!-- Right column: the result -->
+    <aside class="panel summary">
+      <h2 id="estimate-heading" tabindex="-1">Your estimate</h2>
+
+      <p id="empty-note" class="hint">No services chosen yet. Choose services in step 3.</p>
+      <ul id="estimate-list" class="estimate-list"></ul>
+      <p id="size-note" class="hint" hidden>Choose your dog's size in step 1 for an exact boarding and grooming price.</p>
+
+      <p class="total">Estimated total: <strong id="total">$0.00</strong></p>
+
+      <!-- Announces changes such as "Training removed" to screen readers and shows them on screen -->
+      <p id="estimate-status" class="status" role="status"></p>
+
+      <button type="button" id="clear" class="btn btn-secondary">Clear all services</button>
+
+      <hr>
+
+      <!-- The one primary action on the page -->
+      <button type="button" id="check" class="btn btn-primary">Check availability</button>
+
+      <!-- Result of the availability check. Present (empty) when the page loads so screen readers announce updates. -->
+      <div id="availability-status" class="status availability" role="status"></div>
+    </aside>
+
+  </div>
 
 </main>
 

@@ -39,7 +39,13 @@ Contrast pairs checked:
 
 ## ARIA notes (Part 2, step 13)
 
-No ARIA attributes were used. 
+No ARIA attributes were used on home.html. 
+
+ARIA used on services.html: 
+	• role="status" on the two message areas: this lets screen readers announce updates without moving focus. No native element does this reliably across browsers.
+	• aria-describedby links each date field to its error message, so the error is read when the field gets focus.
+	• aria-invalid marks a field with an error as invalid. No native attribute does this for custom checks.
+tabindex="-1" on the "Your estimate" heading: this isn't ARIA. It lets focus move there after a Remove button disappears, and it doesn't change the tab order.
 
 ## Usability review of services.html
 
