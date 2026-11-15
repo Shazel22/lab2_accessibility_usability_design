@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  Name: Skye Hazel
+  Course: CPST 342 Intro to Web Application Development
+  Term: Fall Session II 2026
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Request a boarding stay for your dog at MPLS Dog Boarding in Minneapolis. Tell us your dates and we will reply within one business day.">
+<title>Request a Stay | MPLS Dog Boarding</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#flexcontainer">Skip to main content</a>
+
+<div id="container">
+
+  <!-- Same header as home.html -->
+  <header class="top">
+    <img src="img/mpls_dog_logo.svg" alt="MPLS Dog Boarding">
+    <nav class="menu">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="home.html#hours">Hours</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="flexcontainer">
+
+    <section class="card booking">
+      <h1 class="title">Request a stay</h1>
+      <p>Tell us about you, your dog, and your dates. We will reply within one business day to confirm your stay.</p>
+      <p class="form-note">All fields are required.</p>
+
+      <!-- method and name attributes are ready for the Node.js backend in the next module.
+           booking.js adds "novalidate" so our own plain-language messages replace the browser's.
+           Without JavaScript, the browser's built-in checks still run. -->
+      <form id="booking-form" class="booking-form" method="post" action="#">
+
+        <fieldset>
+          <legend>About you and your dog</legend>
+
+          <div class="form-field">
+            <label for="owner-name">Your name <span class="req">(required)</span></label>
+            <input type="text" id="owner-name" name="ownerName" autocomplete="name" required aria-describedby="owner-name-error">
+            <p class="field-error" id="owner-name-error" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email <span class="req">(required)</span></label>
+            <p class="field-hint" id="email-hint">We will send your confirmation here.</p>
+            <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-hint email-error">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <label for="dog-name">Dog's name <span class="req">(required)</span></label>
+            <input type="text" id="dog-name" name="dogName" autocomplete="off" required aria-describedby="dog-name-error">
+            <p class="field-error" id="dog-name-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your dates</legend>
+          <p class="field-hint" id="dates-hint">Drop off and pick up: Monday to Friday 7:00 am to 6:00 pm, Saturday 8:00 am to 4:00 pm. We are closed on Sunday.</p>
+
+          <div class="form-field">
+            <label for="dropoff">Drop off date <span class="req">(required)</span></label>
+            <input type="date" id="dropoff" name="dropoffDate" required aria-describedby="dates-hint dropoff-error">
+            <p class="field-error" id="dropoff-error" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <label for="pickup">Pick up date <span class="req">(required)</span></label>
+            <input type="date" id="pickup" name="pickupDate" required aria-describedby="dates-hint pickup-error">
+            <p class="field-error" id="pickup-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <!-- The one primary action on the page -->
+        <button type="submit" class="btn btn-primary">Send my stay request</button>
+
+        <!-- Success message area. It is in the page (empty) from the start, so screen readers
+             announce the text when it is added, without moving keyboard focus. -->
+        <div id="booking-status" class="booking-status" role="status"></div>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Same footer as home.html -->
+  <footer class="foot">
+    <address>
+      <p>Call us: <a href="tel:+16125550142">612 555 0142</a></p>
+      <p>123 Example Street, Minneapolis, MN 55401</p>
+    </address>
+    <p>&copy; 2026 MPLS Dog Boarding</p>
+  </footer>
+
+</div>
+
+<script src="booking.js"></script>
+</body>
+</html>

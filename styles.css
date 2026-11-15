@@ -178,3 +178,123 @@ a {
 .foot address {
   font-style: normal;
 }
+
+/* ---------- Request a Stay form (book.html) ----------
+   No CSS custom properties exist in this file yet, so these rules reuse the same
+   hex colors as the rules above (purple #5b2d8e, button #a84300, text #333333). */
+
+/* One centered card. flex-shrink 1 and min-width 0 (from .card) let it fit a 320px screen. */
+.booking {
+  flex: 0 1 40rem;
+  margin: 2% auto;
+}
+
+.form-note {
+  font-weight: bold;
+}
+
+.booking-form fieldset {
+  border: 0;
+  margin: 0 0 24px;
+  padding: 0;
+  min-width: 0; /* fieldsets otherwise refuse to shrink and can cause sideways scrolling */
+}
+
+.booking-form legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #5b2d8e; /* 9.50:1 on white, same as the h2 color */
+}
+
+.form-field {
+  margin-bottom: 16px;
+}
+
+.booking-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* "(required)" is written in text, so it does not rely on color or an asterisk */
+.req {
+  font-weight: normal;
+}
+
+.field-hint {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: #4a4a4a; /* 8.86:1 on white */
+}
+
+.booking-form input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 24rem;
+  padding: 8px;
+  font: inherit; /* inputs do not inherit the page font by default */
+  color: #333333;
+  background: #ffffff;
+  border: 2px solid #6b6b6b; /* 5.33:1 on white, passes 3:1 for field borders */
+  border-radius: 4px;
+}
+
+/* The focus outline comes from the shared :focus-visible rule at the top of this file */
+
+/* Error text: warning icon, the word "Error:", bold text, and color, so color is not the only signal */
+.field-error {
+  margin: 6px 0 0;
+  font-weight: bold;
+  color: #b00020; /* 7.33:1 on white */
+}
+
+.field-error::before {
+  content: "\26A0  "; /* warning sign */
+}
+
+/* A thicker border on fields with a problem, in addition to the written message */
+.booking-form input[aria-invalid="true"] {
+  border-color: #b00020;
+  border-width: 3px;
+}
+
+/* The page's primary action. Matches the .btn link on home.html; these rules reset
+   the default <button> look so it matches. */
+.booking-form .btn-primary {
+  border: 2px solid #a84300;
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  max-width: 100%;
+  white-space: normal; /* lets the label wrap at 320px or 200% zoom instead of overflowing */
+}
+
+.booking-form .btn-primary:hover {
+  background: #8a3700; /* darker; white text is 7.99:1 */
+}
+
+/* Success message. The container is always in the page (role="status"), but it takes
+   no space until booking.js adds text. */
+.booking-status {
+  margin-top: 16px;
+}
+
+.booking-status.is-shown {
+  padding: 12px 16px;
+  border: 2px solid #1e6b34; /* 6.55:1 on white */
+  border-left-width: 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Check mark plus the written message, so success does not rely on the green border alone */
+.booking-status.is-shown::before {
+  content: "\2714  "; /* check mark */
+  color: #1e6b34;
+}

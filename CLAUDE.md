@@ -53,5 +53,5 @@
 - Show me changes I can review before they are applied.
 - Tell me what you are unsure about.
 - Do not change files I did not ask you to change.
-- Do not move keyboard focus after a form is submitted.
+- Do not move keyboard focus after a successful submit.
 - When you finish, list what you created or changed and what I should test.
