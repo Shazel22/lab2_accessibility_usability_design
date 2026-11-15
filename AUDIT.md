@@ -78,9 +78,12 @@ The site is for dog owners.  The primary action on this page is to book a stay a
 
 | Task | Before (result) | After (result) |
 |---|---|---|
-| A | | |
-| B | | |
-| C | | |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I did not get any indication that the button selection worked.  If my screen zoom was larger, I would not see any change to the Estimated Price section.| I can see a clear "selected" state for the services that I chose. |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I can see the estimated cost changing but the individual line items for boarding and grooming are staying the same when I select different dog sizes. | The page is now responsive and the cost changes dynamically when I change the dog size. |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | The size chart hyperlink does not work so I have no point of reference to choose the correct size. | I am able to see the size chart and I better understand the purpose of the hyperlink before clicking.|
+| Task B: Find out if Dec 24 to Dec 26, 2026 is possible. | After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any confirmation as to whether the request was accepted.  I only saw a loading symbol.  | Now there is one clear button to "Check availability" and I get a quick status message to show me if the dates are available. |
+| Task B: Find out if Dec 24 to Dec 26, 2026 is possible, | It was unclear to me at first what "Date 1" and "Date 2" meant.  After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any indication as to what I requested.| Now I can see a clear "Drop off date" and "Pick up date" to select. |
+| Task C: Remove only Training and keep every other choice | There was no way to remove a single service. The only option was to reset and start over, which cleared my other choices too. | I now not only have the ability to select and deselect a service but I can also add multiple of the same service for the stay with clear limits based on the number of days. |
 
 ## Verification of book.html
 
