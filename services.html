@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Estimate the cost of boarding and extra services at MPLS Dog Boarding, and check if your dates are available.">
 <title>Services and Estimate | MPLS Dog Boarding</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="services.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="site-header">
-  <a href="home.html" class="brand">MPLS Dog Boarding</a>
-  <nav>
+<!-- Same header as home.html -->
+<header class="top">
+  <img src="img/mpls_dog_logo.svg" alt="MPLS Dog Boarding">
+  <nav class="menu">
     <ul>
       <li><a href="home.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
@@ -70,6 +72,8 @@
       <!-- Step 2: dates -->
       <section class="panel">
         <h2><span class="step">2</span> Your dates</h2>
+        <fieldset>
+        <legend>Drop off and pick up dates</legend>
         <p class="hint">Drop off and pick up: Monday to Friday 7:00 am to 6:00 pm, Saturday 8:00 am to 4:00 pm. We are closed on Sunday.</p>
 
         <div class="field">
@@ -83,6 +87,7 @@
           <input type="date" id="pickup" name="pickup" aria-describedby="pickup-error">
           <p class="error" id="pickup-error" hidden></p>
         </div>
+        </fieldset>
       </section>
 
       <!-- Step 3: services -->
@@ -189,8 +194,13 @@
 
 </main>
 
-<footer class="site-footer">
-  <p>&copy; 2019 to 2026 MPLS Dog Boarding</p>
+<!-- Same footer as home.html -->
+<footer class="foot">
+  <address>
+    <p>Call us: <a href="tel:+16125550142">612 555 0142</a></p>
+    <p>123 Example Street, Minneapolis, MN 55401</p>
+  </address>
+  <p>&copy; 2026 MPLS Dog Boarding</p>
 </footer>
 
 <script src="services.js"></script>

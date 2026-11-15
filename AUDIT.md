@@ -39,13 +39,33 @@ Contrast pairs checked:
 
 ## ARIA notes (Part 2, step 13)
 
-No ARIA attributes were used on home.html. 
+## ARIA notes (Part 2, step 13)
 
-ARIA used on services.html: 
-	• role="status" on the two message areas: this lets screen readers announce updates without moving focus. No native element does this reliably across browsers.
-	• aria-describedby links each date field to its error message, so the error is read when the field gets focus.
-	• aria-invalid marks a field with an error as invalid. No native attribute does this for custom checks.
-tabindex="-1" on the "Your estimate" heading: this isn't ARIA. It lets focus move there after a Remove button disappears, and it doesn't change the tab order.
+For each ARIA attribute you kept or added, explain why a native HTML element could not do the job. If you use none, say so.
+
+### home.html
+
+home.html uses no ARIA. I removed five ARIA attributes because a native element does each job better:
+
+| Removed | Problem | Native replacement |
+|---|---|---|
+| `role="main"` on a div | Unnecessary | `<main>` |
+| `role="button"` on a div | A div is not focusable and ignores Enter; it also navigates, so it is a link | `<a href="book.html">` |
+| `aria-label="click here"` on that div | Replaced the real label "Request a Stay" with a meaningless one | The link's visible text |
+| `aria-hidden="true"` on the hours | Hid the opening hours from screen readers | Visible `<table>` |
+| `aria-label="more"` on a link | Replaced the visible text with something vaguer | Link text "See all of our services" |
+
+### services.html
+
+| ARIA kept | Where | Why a native element could not do the job |
+|---|---|---|
+| `role="status"` | The estimate message and the availability result | Announces updates (for example "Training removed" or "Good news: your dates are available") to screen readers without moving focus. HTML has `<output>`, but browsers do not announce it reliably, so `role="status"` is the dependable choice. |
+| `aria-describedby` | Drop off and pick up date fields | Connects each field to its error message, so the error is read when the field gets focus. A `<label>` can only name a field. It cannot attach a second piece of text like an error. |
+| `aria-describedby` | The four quantity number fields | Connects each field to its limit text (for example "Up to 2, one per day of your 2-day stay"), so screen reader users hear the limit before changing the number. |
+| `aria-invalid="true"` | Date fields, only while they have an error | Tells screen readers the field has a problem. The native `required` and `min` checks cannot express our custom rules (pick up before drop off, closed on Sunday). |
+
+Not ARIA, but related: `tabindex="-1"` on the "Your estimate" heading lets the script move focus there after a Remove button disappears, so keyboard users are not lost. It does not add the heading to the Tab order.
+
 
 ## Usability review of services.html
 
@@ -78,12 +98,12 @@ The site is for dog owners.  The primary action on this page is to book a stay a
 
 | Task | Before (result) | After (result) |
 |---|---|---|
-| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I did not get any indication that the button selection worked.  If my screen zoom was larger, I would not see any change to the Estimated Price section.| I can see a clear "selected" state for the services that I chose. |
-| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I can see the estimated cost changing but the individual line items for boarding and grooming are staying the same when I select different dog sizes. | The page is now responsive and the cost changes dynamically when I change the dog size. |
-| Task A: Estimate the cost for a large dog for boarding and grooming. | The size chart hyperlink does not work so I have no point of reference to choose the correct size. | I am able to see the size chart and I better understand the purpose of the hyperlink before clicking.|
-| Task B: Find out if Dec 24 to Dec 26, 2026 is possible. | After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any confirmation as to whether the request was accepted.  I only saw a loading symbol.  | Now there is one clear button to "Check availability" and I get a quick status message to show me if the dates are available. |
-| Task B: Find out if Dec 24 to Dec 26, 2026 is possible, | It was unclear to me at first what "Date 1" and "Date 2" meant.  After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any indication as to what I requested.| Now I can see a clear "Drop off date" and "Pick up date" to select. |
-| Task C: Remove only Training and keep every other choice | There was no way to remove a single service. The only option was to reset and start over, which cleared my other choices too. | I now not only have the ability to select and deselect a service but I can also add multiple of the same service for the stay with clear limits based on the number of days. |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I did not get any indication that the button selection worked.  If my screen zoom was larger, I would not see any change to the Estimated Price section.| I can see a clear "selected" state for the services that I chose. Keyboard pass. |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | After choosing the services, I can see the estimated cost changing but the individual line items for boarding and grooming are staying the same when I select different dog sizes. | The page is now responsive and the cost changes dynamically when I change the dog size.Keyboard pass. |
+| Task A: Estimate the cost for a large dog for boarding and grooming. | The size chart hyperlink does not work so I have no point of reference to choose the correct size. | I am able to see the size chart and I better understand the purpose of the hyperlink before clicking. Keyboard pass.|
+| Task B: Find out if Dec 24 to Dec 26, 2026 is possible. | After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any confirmation as to whether the request was accepted.  I only saw a loading symbol.  | Now there is one clear button to "Check availability" and I get a quick status message to show me if the dates are available. Keyboard pass.|
+| Task B: Find out if Dec 24 to Dec 26, 2026 is possible, | It was unclear to me at first what "Date 1" and "Date 2" meant.  After selecting the dates, I hit both the "Go" and "Send" buttons and did not get any indication as to what I requested.| Now I can see a clear "Drop off date" and "Pick up date" to select. Keyboard pass.|
+| Task C: Remove only Training and keep every other choice | There was no way to remove a single service. The only option was to reset and start over, which cleared my other choices too. | I now not only have the ability to select and deselect a service but I can also add multiple of the same service for the stay with clear limits based on the number of days. Keyboard pass.|
 
 ## Verification of book.html
 
