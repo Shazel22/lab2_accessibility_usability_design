@@ -66,6 +66,8 @@ Design checklist for this page:
 - What is the primary action?
 - What competes with it?
 
+The site is for dog owners.  The primary action on this page is to book a stay and any additional services for their dog.  The announcement banners at the top are all competing with this primary action and pushing it below the fold at 100% zoom. 
+
 ## Retest of services.html
 
 | Task | Before (result) | After (result) |
