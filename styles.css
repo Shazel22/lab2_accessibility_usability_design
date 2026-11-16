@@ -1,23 +1,69 @@
-/* MPLS Dog Boarding: styles for home.html */
+/* MPLS Dog Boarding: shared styles for all pages (home.html, services.html, book.html).
+   services.html also loads services.css for its own layout. */
+
+/* ---------- Design tokens ----------
+   Colors, spacing, and font sizes are defined once here and used everywhere with var(--name).
+   Contrast ratios are against white (#ffffff) unless noted. */
+:root {
+  /* Colors */
+  --color-brand: #5b2d8e;           /* headings, focus outline, skip link, selected items: 9.50:1 */
+  --color-brand-tint: #f4eefa;      /* light lavender backgrounds */
+  --color-brand-tint-line: #d9cce8; /* decorative divider on the lavender background */
+  --color-action: var(--color-brand); /* the primary button on every page: white text 9.50:1 */
+  --color-action-hover: #45206e;      /* darker purple on hover: white text 12.46:1 */
+  --color-text: #333333;            /* 12.63:1, 11.29:1 on --color-page-bg */
+  --color-text-muted: #4a4a4a;      /* hints, prices, footer: 8.86:1 */
+  --color-link: #1c4fa0;            /* 7.85:1 */
+  --color-on-dark: #ffffff;         /* text on brand or action backgrounds */
+  --color-field-border: #6b6b6b;    /* form field borders: 5.33:1, needs 3:1 */
+  --color-panel-border: #c4c4c4;    /* decorative panel and card borders */
+  --color-divider: #dddddd;         /* decorative lines between rows */
+  --color-error: #b00020;           /* 7.33:1 */
+  --color-error-tint: #fdecee;
+  --color-success: #1e6b34;         /* 6.55:1 */
+  --color-success-tint: #eaf5ec;
+  --color-surface: #ffffff;         /* cards, panels, header, fields */
+  --color-page-bg: #f2f2f2;         /* services.html page background */
+  --color-footer-bg: #f4f4f4;
+
+  /* Spacing */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2.5rem;   /* 40px */
+
+  /* Font sizes (rem, so they follow the visitor's browser text size setting) */
+  --text-sm: 0.875rem;  /* footer */
+  --text-hint: 0.9rem;  /* hints, details, help text */
+  --text-base: 1rem;    /* body text */
+  --text-md: 1.1rem;    /* primary buttons, estimate total */
+  --text-lg: 1.25rem;   /* section headings (h2, legends) */
+  --text-xl: 2rem;      /* page heading (h1) */
+
+  /* Focus */
+  --focus-outline: 3px solid var(--color-brand);
+}
 
 /* Font sizes use rem so they follow the visitor's browser text size setting
    (px sizes ignore it). Old sizes were 10px to 12px, too small to read comfortably. */
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  font-size: 1rem; /* was 12px */
+  font-size: var(--text-base); /* was 12px */
   line-height: 1.5;
-  color: #333333; /* was #8a8a8a (3.45:1); now 12.63:1 on white */
+  color: var(--color-text); /* was #8a8a8a (3.45:1); now 12.63:1 on white */
 }
 
 a {
-  color: #1c4fa0; /* was #8ab4ff (2.09:1); now 7.85:1 on white, 7.14:1 on footer */
+  color: var(--color-link); /* was #8ab4ff (2.09:1); now 7.85:1 on white, 7.14:1 on footer */
 }
 
 /* Visible focus for keyboard users (replaces the old "outline: none" that hid focus).
-   #5b2d8e is 9.50:1 on white, 8.35:1 on the lavender background, so it passes 3:1 everywhere. */
+   The brand purple is 9.50:1 on white, 8.35:1 on the lavender background, so it passes 3:1 everywhere. */
 :focus-visible {
-  outline: 3px solid #5b2d8e;
+  outline: var(--focus-outline);
   outline-offset: 3px;
 }
 
@@ -27,9 +73,9 @@ a {
   left: -9999px;
   top: 0;
   z-index: 100;
-  padding: 10px 16px;
-  background: #5b2d8e;
-  color: #ffffff; /* 9.50:1 */
+  padding: 10px var(--space-4);
+  background: var(--color-brand);
+  color: var(--color-on-dark); /* 9.50:1 */
   font-weight: bold;
 }
 
@@ -57,8 +103,8 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 10px 20px;
-  padding: 10px 16px;
-  background: #ffffff;
+  padding: 10px var(--space-4);
+  background: var(--color-surface);
 }
 
 .top img {
@@ -72,7 +118,7 @@ a {
 .menu ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: var(--space-2) 20px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -80,7 +126,7 @@ a {
 
 .menu a {
   text-decoration: none;
-  font-size: 1rem; /* was 12px */
+  font-size: var(--text-base); /* was 12px */
 }
 
 /* Main area with flexbox cards over a decorative illustration.
@@ -90,7 +136,7 @@ a {
   grid-row: 2;
   display: flex;
   flex-wrap: wrap;
-  background: #f4eefa url('img/dog_bg.svg') center / cover no-repeat;
+  background: var(--color-brand-tint) url('img/dog_bg.svg') center / cover no-repeat;
 }
 
 /* Removed fixed height (350px) and overflow hidden, which cut off text when zoomed.
@@ -99,11 +145,11 @@ a {
   flex: 1 1 300px;
   min-width: 0;
   box-sizing: border-box;
-  padding: 16px;
+  padding: var(--space-4);
   margin: 2%;
   /* was rgba(255,255,255,0.55): the image showed through and changed contrast behind text.
      Solid white keeps every text ratio fixed no matter what is behind the card. */
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   border-radius: 10px;
 }
 
@@ -113,37 +159,54 @@ a {
 }
 
 .card h2 {
-  color: #5b2d8e; /* was #b388d6 (2.83:1); now 9.50:1 */
-  font-size: 1.25rem; /* was 14px */
+  color: var(--color-brand); /* was #b388d6 (2.83:1); now 9.50:1 */
+  font-size: var(--text-lg); /* was 14px */
 }
 
 /* Price sub-headings were h5, now h3 (correct order under h2) */
 .card h3 {
-  color: #4a4a4a; /* was #b8b8b8 (1.98:1); now 8.86:1 */
-  font-size: 1rem; /* was 11px */
+  color: var(--color-text-muted); /* was #b8b8b8 (1.98:1); now 8.86:1 */
+  font-size: var(--text-base); /* was 11px */
 }
 
 .title {
   margin: 0;
-  font-size: 2rem; /* was 22px */
+  font-size: var(--text-xl); /* was 22px */
   line-height: 1.2;
-  color: #5b2d8e; /* was #c9a3e8 (2.12:1); now 9.50:1 */
+  color: var(--color-brand); /* was #c9a3e8 (2.12:1); now 9.50:1 */
 }
 
 .tagline {
-  font-size: 1rem; /* was 10px */
+  font-size: var(--text-base); /* was 10px */
 }
 
 .btn {
   display: inline-block;
   padding: 10px 18px;
-  /* was #f5a25d with white text (2.06:1). Now white on #a84300 = 6.06:1,
-     and the button itself is 6.06:1 against the white card (needs 3:1). */
-  background: #a84300;
-  color: #ffffff;
+  /* was #f5a25d with white text (2.06:1). Now white on the brand purple = 9.50:1,
+     and the button itself is 9.50:1 against the white card (needs 3:1). */
+  background: var(--color-action);
+  color: var(--color-on-dark);
   text-decoration: none; /* now a real link; keep the button look */
   border-radius: 6px;
   cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-action-hover); /* white text 12.46:1 */
+}
+
+/* The one primary action on a page ("Check availability", "Send my stay request").
+   Same purple as the "Request a Stay" link on home.html, so the main action looks
+   the same on every page. These rules also reset the default <button> look. */
+.btn-primary {
+  border: 2px solid var(--color-action);
+  font: inherit;
+  font-weight: bold;
+  font-size: var(--text-md);
+  padding: var(--space-3) 20px;
+  max-width: 100%;
+  white-space: normal; /* lets the label wrap at 320px or 200% zoom instead of overflowing */
 }
 
 .paws {
@@ -161,17 +224,17 @@ a {
 .hours-list th,
 .hours-list td {
   text-align: left;
-  padding: 4px 16px 4px 0;
+  padding: var(--space-1) var(--space-4) var(--space-1) 0;
 }
 
 .foot {
   grid-column: 1 / 4;
   grid-row: 3;
-  padding: 16px;
+  padding: var(--space-4);
   text-align: center; /* replaces the old <center> tag */
-  font-size: 0.875rem; /* was 11px */
-  color: #4a4a4a; /* was #aaaaaa (2.11:1); now 8.06:1 on #f4f4f4 */
-  background: #f4f4f4;
+  font-size: var(--text-sm); /* was 11px */
+  color: var(--color-text-muted); /* was #aaaaaa (2.11:1); now 8.06:1 on the footer gray */
+  background: var(--color-footer-bg);
 }
 
 /* <address> is italic by default; keep footer text consistent */
@@ -179,9 +242,7 @@ a {
   font-style: normal;
 }
 
-/* ---------- Request a Stay form (book.html) ----------
-   No CSS custom properties exist in this file yet, so these rules reuse the same
-   hex colors as the rules above (purple #5b2d8e, button #a84300, text #333333). */
+/* ---------- Request a Stay form (book.html) ---------- */
 
 /* One centered card. flex-shrink 1 and min-width 0 (from .card) let it fit a 320px screen. */
 .booking {
@@ -190,29 +251,29 @@ a {
 }
 
 /* ----- Visual hierarchy, largest to quietest:
-   h1 (2rem) > section headings (1.25rem, purple) > labels (1rem bold)
-   > intro text (1rem, gray) > hints and notes (0.9 to 0.95rem, gray) ----- */
+   h1 (--text-xl) > section headings (--text-lg, purple) > labels (--text-base bold)
+   > intro text (--text-base, gray) > hints and notes (--text-hint, gray) ----- */
 
 /* Space under the h1. Scoped to .booking so home.html's .title does not change. */
 .booking .title {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
-/* Intro text is quieter than the headings: #4a4a4a is 8.86:1 on white */
+/* Intro text is quieter than the headings: 8.86:1 on white */
 .booking > p {
-  color: #4a4a4a;
+  color: var(--color-text-muted);
 }
 
 /* Not bold, so it no longer looks like a heading. Each label also says "(required)". */
 .form-note {
-  font-size: 0.95rem;
-  color: #4a4a4a; /* 8.86:1 on white */
+  font-size: var(--text-hint);
+  color: var(--color-text-muted); /* 8.86:1 on white */
 }
 
 /* Extra space after each group so the sections read as separate blocks */
 .booking-form fieldset {
   border: 0;
-  margin: 0 0 2.5rem;
+  margin: 0 0 var(--space-6);
   padding: 0;
   min-width: 0; /* fieldsets otherwise refuse to shrink and can cause sideways scrolling */
 }
@@ -220,21 +281,21 @@ a {
 /* Section headings: same size and color as the h2 on home.html (.card h2) and services.html */
 .booking-form legend {
   padding: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-lg);
   line-height: 1.3;
   font-weight: bold;
-  color: #5b2d8e; /* 9.50:1 on white, same as the h2 color */
+  color: var(--color-brand); /* 9.50:1 on white, same as the h2 color */
 }
 
 .form-field {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .booking-form label {
   display: block;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 /* "(required)" is written in text, so it does not rely on color or an asterisk */
@@ -244,8 +305,8 @@ a {
 
 .field-hint {
   margin: 0 0 6px;
-  font-size: 0.9rem; /* the quietest text on the page; rem so it follows the browser text size */
-  color: #4a4a4a; /* 8.86:1 on white */
+  font-size: var(--text-hint); /* the quietest text on the page */
+  color: var(--color-text-muted); /* 8.86:1 on white */
 }
 
 .booking-form input {
@@ -253,11 +314,11 @@ a {
   box-sizing: border-box;
   width: 100%;
   max-width: 24rem;
-  padding: 8px;
+  padding: var(--space-2);
   font: inherit; /* inputs do not inherit the page font by default */
-  color: #333333;
-  background: #ffffff;
-  border: 2px solid #6b6b6b; /* 5.33:1 on white, passes 3:1 for field borders */
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 2px solid var(--color-field-border); /* 5.33:1 on white, passes 3:1 for field borders */
   border-radius: 4px;
 }
 
@@ -267,7 +328,7 @@ a {
 .field-error {
   margin: 6px 0 0;
   font-weight: bold;
-  color: #b00020; /* 7.33:1 on white */
+  color: var(--color-error); /* 7.33:1 on white */
 }
 
 .field-error::before {
@@ -276,35 +337,35 @@ a {
 
 /* A thicker border on fields with a problem, in addition to the written message */
 .booking-form input[aria-invalid="true"] {
-  border-color: #b00020;
+  border-color: var(--color-error);
   border-width: 3px;
 }
 
 /* "Your selections" summary. The h2 already gets the section heading look
-   (1.25rem, #5b2d8e) from the shared .card h2 rule, so it matches the legends.
-   Light lavender box (#f4eefa, the page background color) sets the summary apart.
-   Contrast on #f4eefa: text #333333 11.10:1, hints #4a4a4a 7.79:1,
-   link #1c4fa0 6.90:1, heading #5b2d8e 8.35:1, focus outline #5b2d8e 8.35:1. */
+   (--text-lg, brand purple) from the shared .card h2 rule, so it matches the legends.
+   The lavender box sets the summary apart.
+   Contrast on the lavender: text 11.10:1, muted text 7.79:1,
+   link 6.90:1, heading 8.35:1, focus outline 8.35:1. */
 .selections {
-  margin: 0 0 2.5rem;
-  padding: 1rem;
-  background: #f4eefa;
+  margin: 0 0 var(--space-6);
+  padding: var(--space-4);
+  background: var(--color-brand-tint);
   border-radius: 6px;
 }
 
 .selections h2 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-2);
   line-height: 1.3;
 }
 
 .selection-list {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4);
 }
 
 /* Each row is a <div> holding one <dt> and its <dd>, with a thin line between rows */
 .selection-list div {
-  padding: 0.5rem 0;
-  border-top: 1px solid #d9cce8; /* decorative divider only, not needed to understand the list */
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-brand-tint-line); /* decorative divider only */
 }
 
 .selection-list dt {
@@ -322,44 +383,28 @@ a {
 }
 
 .edit-choices {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-2);
   font-weight: bold;
-}
-
-/* The page's primary action. Matches the .btn link on home.html; these rules reset
-   the default <button> look so it matches. */
-.booking-form .btn-primary {
-  border: 2px solid #a84300;
-  font: inherit;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 12px 20px;
-  max-width: 100%;
-  white-space: normal; /* lets the label wrap at 320px or 200% zoom instead of overflowing */
-}
-
-.booking-form .btn-primary:hover {
-  background: #8a3700; /* darker; white text is 7.99:1 */
 }
 
 /* Success message. The container is always in the page (role="status"), but it takes
    no space until booking.js adds text. */
 .booking-status {
-  margin-top: 16px;
+  margin-top: var(--space-4);
 }
 
 .booking-status.is-shown {
-  padding: 12px 16px;
-  border: 2px solid #1e6b34; /* 6.55:1 on white */
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-success); /* 6.55:1 on white */
   border-left-width: 8px;
   border-radius: 6px;
-  background: #ffffff;
-  color: #333333;
+  background: var(--color-surface);
+  color: var(--color-text);
   font-weight: bold;
 }
 
 /* Check mark plus the written message, so success does not rely on the green border alone */
 .booking-status.is-shown::before {
   content: "\2714  "; /* check mark */
-  color: #1e6b34;
+  color: var(--color-success);
 }
