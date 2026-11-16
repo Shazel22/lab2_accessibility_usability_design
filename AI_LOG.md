@@ -24,11 +24,13 @@ Name: Skye Hazel
 
 | # | Problem | How I found it (tool, test, or reading the diff) | Fixed by hand or by follow up prompt |
 |---|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
+| 1 | No clear differentiation between heading sizes on the booking form. | I found it by manually reviewing the page. | Fixed by prompt |
+| 2 | The page seems disconnected from the prior page and the context is not carrying over.  It's asking users to add the same information in again. | I found it manually by reviewing the page. | Fixed by prompt |
+| 3 | The page seems disconnected from the prior page and the context is not carrying over. The user should be able to see a confirmation of their selections here before submitting. | I found it manually by reviewing the page. | Fixed by prompt |
+
 
 ## A time the AI was wrong or unhelpful
 
 What happened, and how I caught it:
+The checkboxes were not keyboard accessible.  I caught it by manual testing.  This made me think more about the user flow and consider that users should be able to add multiple services to the stay and not be limited to only one of each. 
 
