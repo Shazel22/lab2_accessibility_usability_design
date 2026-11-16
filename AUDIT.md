@@ -39,8 +39,6 @@ Contrast pairs checked:
 
 ## ARIA notes (Part 2, step 13)
 
-## ARIA notes (Part 2, step 13)
-
 For each ARIA attribute you kept or added, explain why a native HTML element could not do the job. If you use none, say so.
 
 ### home.html
@@ -134,4 +132,4 @@ The site is for dog owners.  The primary action on this page is to book a stay a
 - [ ] Feedback is meaningful (errors and success). Proof:
 
 ## One thing I had to check by hand that the tools did not catch
-
+The tools did not catch all of the keyboard accessibility issues. 

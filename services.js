@@ -213,6 +213,57 @@ function render() {
   sizeNote.hidden = !needsSize;
   clearButton.hidden = keys.length === 0;
   totalEl.textContent = money(sum);
+  lastTotal = sum;
+  updateBookingLink();
+}
+
+/* ---------- Carry choices to and from the booking page ---------- */
+
+// The estimate total from the last render, sent to the booking page as-is
+// so booking.js never needs its own copy of the prices.
+var lastTotal = 0;
+
+// Current choices as a query string, for example
+// "size=medium&dropoff=2026-11-18&pickup=2026-11-20&boarding=1&daycare=2&total=318.75".
+// Choices only: never a name, email, or other personal information.
+function choicesQuery() {
+  var params = new URLSearchParams();
+  if (sizeSelect.value) params.set('size', sizeSelect.value);
+  if (dropoffInput.value) params.set('dropoff', dropoffInput.value);
+  if (pickupInput.value) params.set('pickup', pickupInput.value);
+  chosenKeys().forEach(function (key) { params.set(key, getQty(key)); });
+  if (chosenKeys().length) params.set('total', lastTotal.toFixed(2));
+  return params.toString();
+}
+
+// Keep the "Request this stay" link (shown after an availability check) in step
+// with the current choices, so changes made after the check still carry over.
+function updateBookingLink() {
+  var link = availabilityStatus.querySelector('a');
+  if (link) link.href = 'book.html?' + choicesQuery();
+}
+
+// The booking page's "Edit your choices" link comes back here with the same query string.
+// Restore every choice so the visitor can change them without starting over.
+// Invalid values are ignored. Focus is not moved.
+function restoreChoices() {
+  var params = new URLSearchParams(window.location.search);
+
+  var size = params.get('size');
+  if (size && sizeFactor.hasOwnProperty(size)) sizeSelect.value = size;
+
+  // Dates first: the quantity limits depend on the number of nights
+  [[dropoffInput, params.get('dropoff')], [pickupInput, params.get('pickup')]].forEach(function (pair) {
+    if (pair[1] && /^\d{4}-\d{2}-\d{2}$/.test(pair[1])) pair[0].value = pair[1];
+  });
+
+  checkKeys.forEach(function (key) {
+    if (params.get(key) === '1') checkbox(key).checked = true;
+  });
+  qtyKeys.forEach(function (key) {
+    var n = parseInt(params.get(key), 10);
+    if (n > 0) setQty(key, n); // setQty keeps it within the limit for these dates
+  });
 }
 
 function announce(message) {
@@ -375,7 +426,9 @@ checkButton.addEventListener('click', function () {
       '<p><strong>Good news: your dates are available.</strong></p>' +
       '<p>' + formatDate(drop) + ' to ' + formatDate(pick) + ' (' + nights +
       (nights === 1 ? ' night' : ' nights') + ').' + notes + '</p>' +
-      '<p><a href="book.html">Request this stay</a></p>';
+      // Carry the choices to the booking form in the link's query string
+      // (choices only, never personal information). booking.js reads them.
+      '<p><a href="book.html?' + choicesQuery().replace(/&/g, '&amp;') + '">Request this stay</a></p>';
     checking = false;
   }, 600);
 });
@@ -388,4 +441,5 @@ pickupInput.addEventListener('input', function () { clearError(pickupInput); });
 dropoffInput.min = todayString();
 pickupInput.min = todayString();
 
+restoreChoices();
 render();

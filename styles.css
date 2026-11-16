@@ -189,21 +189,40 @@ a {
   margin: 2% auto;
 }
 
-.form-note {
-  font-weight: bold;
+/* ----- Visual hierarchy, largest to quietest:
+   h1 (2rem) > section headings (1.25rem, purple) > labels (1rem bold)
+   > intro text (1rem, gray) > hints and notes (0.9 to 0.95rem, gray) ----- */
+
+/* Space under the h1. Scoped to .booking so home.html's .title does not change. */
+.booking .title {
+  margin-bottom: 0.75rem;
 }
 
+/* Intro text is quieter than the headings: #4a4a4a is 8.86:1 on white */
+.booking > p {
+  color: #4a4a4a;
+}
+
+/* Not bold, so it no longer looks like a heading. Each label also says "(required)". */
+.form-note {
+  font-size: 0.95rem;
+  color: #4a4a4a; /* 8.86:1 on white */
+}
+
+/* Extra space after each group so the sections read as separate blocks */
 .booking-form fieldset {
   border: 0;
-  margin: 0 0 24px;
+  margin: 0 0 2.5rem;
   padding: 0;
   min-width: 0; /* fieldsets otherwise refuse to shrink and can cause sideways scrolling */
 }
 
+/* Section headings: same size and color as the h2 on home.html (.card h2) and services.html */
 .booking-form legend {
   padding: 0;
-  margin-bottom: 8px;
-  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
   font-weight: bold;
   color: #5b2d8e; /* 9.50:1 on white, same as the h2 color */
 }
@@ -225,7 +244,7 @@ a {
 
 .field-hint {
   margin: 0 0 6px;
-  font-size: 0.95rem;
+  font-size: 0.9rem; /* the quietest text on the page; rem so it follows the browser text size */
   color: #4a4a4a; /* 8.86:1 on white */
 }
 
@@ -259,6 +278,52 @@ a {
 .booking-form input[aria-invalid="true"] {
   border-color: #b00020;
   border-width: 3px;
+}
+
+/* "Your selections" summary. The h2 already gets the section heading look
+   (1.25rem, #5b2d8e) from the shared .card h2 rule, so it matches the legends.
+   Light lavender box (#f4eefa, the page background color) sets the summary apart.
+   Contrast on #f4eefa: text #333333 11.10:1, hints #4a4a4a 7.79:1,
+   link #1c4fa0 6.90:1, heading #5b2d8e 8.35:1, focus outline #5b2d8e 8.35:1. */
+.selections {
+  margin: 0 0 2.5rem;
+  padding: 1rem;
+  background: #f4eefa;
+  border-radius: 6px;
+}
+
+.selections h2 {
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.selection-list {
+  margin: 0 0 1rem;
+}
+
+/* Each row is a <div> holding one <dt> and its <dd>, with a thin line between rows */
+.selection-list div {
+  padding: 0.5rem 0;
+  border-top: 1px solid #d9cce8; /* decorative divider only, not needed to understand the list */
+}
+
+.selection-list dt {
+  font-weight: bold;
+}
+
+.selection-list dd {
+  margin: 0;
+  overflow-wrap: anywhere; /* long text wraps at 320px and 200% zoom */
+}
+
+.selection-list ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.edit-choices {
+  margin: 0 0 0.5rem;
+  font-weight: bold;
 }
 
 /* The page's primary action. Matches the .btn link on home.html; these rules reset

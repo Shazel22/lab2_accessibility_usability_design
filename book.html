@@ -83,6 +83,38 @@
           </div>
         </fieldset>
 
+        <!-- Summary of the choices made on the services page. booking.js fills it in from the
+             link's query string and updates the dates when the date fields above change.
+             The text below is what shows when nothing was carried over. -->
+        <section class="selections">
+          <h2>Your selections</h2>
+          <p class="field-hint">Check your choices before you send your request.</p>
+          <dl class="selection-list">
+            <div>
+              <dt>Dog size</dt>
+              <dd id="sel-size">Not chosen yet</dd>
+            </div>
+            <div>
+              <dt>Services</dt>
+              <dd id="sel-services">You haven't chosen any services yet.</dd>
+            </div>
+            <div>
+              <dt>Drop off date</dt>
+              <dd id="sel-dropoff">Not chosen yet</dd>
+            </div>
+            <div>
+              <dt>Pick up date</dt>
+              <dd id="sel-pickup">Not chosen yet</dd>
+            </div>
+            <div>
+              <dt>Estimated total (from the services page)</dt>
+              <dd id="sel-total">Not worked out yet. Choose services on the services page to see an estimate.</dd>
+            </div>
+          </dl>
+          <p class="edit-choices"><a id="edit-link" href="services.html">Choose services on the services page</a></p>
+          <p class="field-hint">Your name, email, and dog's name are not carried over, so you will need to enter them again.</p>
+        </section>
+
         <!-- The one primary action on the page -->
         <button type="submit" class="btn btn-primary">Send my stay request</button>
 
