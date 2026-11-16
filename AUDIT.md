@@ -107,29 +107,31 @@ The site is for dog owners.  The primary action on this page is to book a stay a
 
 | Check | Result |
 |---|---|
-| HTML validator errors | |
-| Lighthouse accessibility score | |
-| Keyboard test (notes) | |
-| DevTools check of the status message container (what attribute did you see?) | |
+| HTML validator errors | 0 errors |
+| Lighthouse accessibility score | 100 |
+| Keyboard test (notes) | passed all checks|
+| DevTools check of the status message container (what attribute did you see?) | `role="status"` on `<div id="booking-status" class="booking-status">`.|
 
 ## After (home.html final)
 
 | Check | Before | After |
 |---|---|---|
-| Lighthouse accessibility score | | |
-| WAVE errors | | |
-| WAVE contrast errors | | |
-| HTML validator errors | | |
-| Keyboard test | | |
-| 200% zoom and 320px test | | |
+| Lighthouse accessibility score | 84 | 100 |
+| WAVE errors | 1 | 0 |
+| WAVE contrast errors | 6 | 0 |
+| HTML validator errors | 5 | 0 |
+| Keyboard test | Keyboard controls do not work at all. |All 7 stops can be reached with Tab |
+| 200% zoom and 320px test | Text cut off after zoom and window size changed.| No sideways scrolling and no content past the right edge at 320px wide.|
+
+
 
 ## Before shipping checklist (all three pages)
 
-- [ ] Keyboard access works everywhere. Proof:
-- [ ] Focus is always visible. Proof:
-- [ ] Contrast passes. Proof:
-- [ ] Layout works on small screens. Proof:
-- [ ] Feedback is meaningful (errors and success). Proof:
+- [X] Keyboard access works everywhere. Proof: Every control can be reached with tab.
+- [X] Focus is always visible. Proof: Every tab stop shows an outline.
+- [X] Contrast passes. Proof: Lighthouse's color contrast audit passed on all three pages.
+- [x] Layout works on small screens. Proof: no sideways scrolling and no content past the right edge on all screens.
+- [X] Feedback is meaningful (errors and success). Proof: Errors are shown as written textg and do not only rely on color to communicate status.
 
 ## One thing I had to check by hand that the tools did not catch
 The tools did not catch all of the keyboard accessibility issues. 
